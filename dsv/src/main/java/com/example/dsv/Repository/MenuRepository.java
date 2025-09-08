@@ -1,6 +1,10 @@
 package com.example.dsv.Repository;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.dsv.Model.Product;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MenuRepository {
+@Repository
+public interface MenuRepository extends ReactiveCrudRepository<Product, String> {
+
 }

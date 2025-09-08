@@ -1,11 +1,10 @@
 package com.example.dsv.Service;
 
 import com.example.dsv.Model.Product;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 public interface MenuService {
 
 
-    List<Product> getMenu();
+    Flux<Product> getMenu();
 }
