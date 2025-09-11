@@ -11,7 +11,11 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/menu")
 public class MenuController {
 
-    MenuService menuService;
+    private final MenuService menuService;
+
+    MenuController(MenuService menuService) {
+        this.menuService = menuService;
+    }
 
     @GetMapping("/getMenu")
     public Flux<Product> getMenu() {
