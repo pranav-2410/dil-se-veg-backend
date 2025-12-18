@@ -35,14 +35,23 @@ INSERT INTO menu VALUES(1, "idli", 50, "breakfast");
 
 Delete from menu where id = 1;
 
-SELECT menu.* FROM menu]]></console>
+SELECT menu.* FROM menu
+
+alter table menu
+add quantity INT;
+
+update menu
+set quantity = 10
+where id = 1;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" object-ref="consoles/dsv" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" />
