@@ -41,6 +41,10 @@ jobs:
     permissions:
       contents: write
 
+    defaults:
+      run:
+        working-directory: dsv/dsv
+    
     steps:
       - uses: actions/checkout@v4
 
@@ -53,5 +57,4 @@ jobs:
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582
         with:
-          gradle-project-path: dsv/dsv
-        working-directory: dsv/dsv
+          gradle-project-path: .
