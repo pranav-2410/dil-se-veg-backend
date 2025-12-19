@@ -30,10 +30,10 @@ jobs:
         uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582
 
       - name: Make gradlew executable
-        run: chmod +x ./dsv/dsv/gradlew
+        run: chmod +x ./dsv/gradlew
 
       - name: Build with Gradle Wrapper
-        working-directory: dsv/dsv
+        working-directory: /dsv
         run: ./gradlew build
 
   dependency-submission:
@@ -43,7 +43,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: dsv/dsv
+        working-directory: /dsv
     
     steps:
       - uses: actions/checkout@v4
