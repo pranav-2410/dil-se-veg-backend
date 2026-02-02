@@ -9,6 +9,24 @@
     <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <begin-quote value="&quot;" />
+      <end-quote value="&quot;" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="windows-1252" />
+      <charset value="windows-1252" />
+    </export-instructions>
+  </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
@@ -22,6 +40,8 @@
 
 USE dsv_db;
 
+show TABLES;
+
 create TABLE menu(
 id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(20),
@@ -31,27 +51,63 @@ category VARCHAR(20)
 
 select menu.* from menu;
 
-INSERT INTO menu VALUES(1, "idli", 50, "breakfast");
+INSERT INTO menu VALUES(2, "vada", 10, "breakfast", 20);
 
 Delete from menu where id = 1;
 
-SELECT menu.* FROM menu
+SELECT * FROM menu
 
 alter table menu
 add quantity INT;
 
 update menu
 set quantity = 10
-where id = 1;]]></console>
+where id = 1;
+
+
+CREATE TABLE IF NOT EXISTS users(
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(255),
+ email_id VARCHAR(255) UNIQUE,
+ role VARCHAR(50),
+ password VARCHAR(255)
+);
+
+Delete from users where id = 1;
+
+SHOW TABLES;
+DESC users;
+
+SELECT COUNT(*) FROM users;
+SELECT DATABASE();
+
+TRUNCATE TABLE users;
+
+select * from users;
+
+
+select * from users where email_id = 'pranav@gmail.com';
+
+SELECT DATABASE();
+COMMIT;
+
+USE dsv_db;
+SELECT * FROM users;
+SELECT * FROM dsv_db.menu WHERE email_id = 'kiran@gmail.com';
+SHOW DATABASES;
+
+USE sys;
+Show TABLES;
+
+
+TRUNCATE TABLE dsv_db.users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" object-ref="consoles/dsv" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" />
