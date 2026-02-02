@@ -2,10 +2,13 @@ package com.example.dsv.Service.Impl;
 
 import com.example.dsv.Config.SecurityConfig;
 import com.example.dsv.Exceptions.UserAlreadyExists;
+import com.example.dsv.Model.Auth.LoginResponse;
+import com.example.dsv.Model.Auth.LoginUser;
 import com.example.dsv.Model.Auth.RegisterUser;
 import com.example.dsv.Model.Auth.User;
 import com.example.dsv.Repository.AuthRepository;
 import com.example.dsv.Service.AuthService;
+import com.example.dsv.Service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private SecurityConfig securityConfig;
 
+    @Autowired
+    private JwtService jwtService;
+
     @Override
     public Mono<String> registerUser(RegisterUser registerUser) {
 
@@ -30,6 +36,21 @@ public class AuthServiceImpl implements AuthService {
                 )
                 .switchIfEmpty(authRepository.save(createUser(registerUser))
                         .thenReturn("User created successfully"));
+    }
+
+    @Override
+    public Mono<LoginResponse> loginUser(LoginUser loginUser) {
+        return authRepository.findByEmailId(loginUser.getEmailId())
+                .switchIfEmpty(Mono.error(new RuntimeException("Invalid Credentials")))
+                .flatMap(user -> {
+                    if (!passwordEncoder.matches(loginUser.getPassword(), user.getPassword())) {
+                        return Mono.error(new RuntimeException("Invalid Credentials"));
+                    }
+                    String token = jwtService.generateToken(user);
+                    return Mono.just(new LoginResponse(
+                            token, user.getRole(), user.getEmailId(), user.getName()
+                    ));
+                });
     }
 
     private User createUser(RegisterUser registerUser) {

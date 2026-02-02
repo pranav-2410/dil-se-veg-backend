@@ -107,9 +107,7 @@ TRUNCATE TABLE dsv_db.users;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" object-ref="consoles/dsv" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="91c96b6b-b0ac-4a12-9a2b-26f310221b1f" />

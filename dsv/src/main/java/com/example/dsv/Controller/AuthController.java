@@ -1,5 +1,7 @@
 package com.example.dsv.Controller;
 
+import com.example.dsv.Model.Auth.LoginResponse;
+import com.example.dsv.Model.Auth.LoginUser;
 import com.example.dsv.Model.Auth.RegisterUser;
 import com.example.dsv.Service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +29,10 @@ public class AuthController {
                         ResponseEntity.status(HttpStatus.CREATED)
                         .body(response)
                 );
+    }
+
+    @PostMapping("/login")
+    public Mono<LoginResponse> loginUser (@RequestBody LoginUser user) {
+        return authService.loginUser(user);
     }
 }
